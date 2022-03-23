@@ -269,6 +269,33 @@ record(mbbiDirect, $(P)getgenStatus)
 		field(SCAN, "1 second")
 	}
 
+record(bi, “$(P)RFPowerStatus”) 
+	{
+    		field(INP, “$(P)getgenStatus.B0 CP”)
+    		field(ZNAM, “Off”)
+    		field(ONAM, “On”)
+	}
+
+record(bi, “$(P)InterlockStatus”) 
+	{
+    		field(INP, “$(P)getgenStatus.B11 CP”)
+    		field(ZNAM, “Closed”)
+    		field(ONAM, “Open”)
+	}
+	
+record(bi, “$(P)RFsource”) 
+	{
+    		field(INP, “$(P)getgenStatus.B04 CP”)
+    		field(ZNAM, “Inactive”)
+    		field(ONAM, “Active”)
+	}
+
+record(bi, “$(P)AnalogInter”) 
+	{
+    		field(INP, “$(P)getgenStatus.B14 CP”)
+    		field(ZNAM, “Disable”)
+    		field(ONAM, “Enable”)
+	}
 	
 record(mbbi, $(P)getgenTuner)
 	{

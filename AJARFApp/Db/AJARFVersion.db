@@ -1,0 +1,6 @@
+record(lsi, "$(user):AJARF:version") {
+    field(DTYP, "AJARF version")
+    field(DESC, "Version string")
+    field(SIZV, "$(SIZV=200)")
+    field(PINI, "YES")
+}

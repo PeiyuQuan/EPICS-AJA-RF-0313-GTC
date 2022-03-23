@@ -18,7 +18,7 @@ epicsEnvSet ("PORT", "serial8")
 
 #- Set this to see messages from mySub
 #var mySubDebug 1
-drvAsynIPPortConfigure("serial8", "192.168.0.30:4008<192.168.0.30:4008/> COM", 0, 0, 0)
+drvAsynIPPortConfigure("serial8", "/dev/ttyUSB0", 0, 0, 0)
 asynSetOption("serial8",0,"baud","38400")
 asynSetOption("serial8",0,"bits","8")
 asynSetOption("serial8",0,"stop","1")

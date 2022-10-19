@@ -1,0 +1,424 @@
+
+record(mbbo, "$(P)reqcontrol")
+	{
+		field(DESC, "AJA power supply")
+		field(DTYP, "stream")
+		field(OUT, "@AJARF.proto reqcontrol($(P)reqcontrolresult) $(PORT)")
+		field(ZRVL, "0x5554")
+		field(ONVL, "0x5555")
+		field(ZRST, "Local")
+		field(ONST, "remote")
+		field(SCAN, "2 second")
+	}
+
+record(mbbi, "$(P)reqcontrolresult")
+	{
+		field(DESC, "The result of Request release control")
+		field(NOBT, "16")
+		field(ZRVL, "0x5554")
+		field(ZRST, "Local")
+		field(ONVL, "0x5555")
+		field(ONST, "remote")
+	}
+	
+record(bo, "$(P)Ping")
+	{
+		field(DESC, "check for communication with device")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto Ping $(PORT)")
+	}
+	
+record(mbbo, "$(P)RFonoff")
+	{
+		field(DESC, "RFONOFF")
+		field(DTYP, "stream")
+		field(OUT, "@AJARF.proto RFonoff $(PORT)")
+		field(ZRVL, "0x5554")
+		field(ONVL, "0x5555")
+		field(ZRST, "OFF")
+		field(ONST, "ON")
+	}
+	
+record(ao, "$(P)setpowerlevel")
+	{
+		field(DESC, "set point power")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto setpowerlevel $(PORT)")
+		field(EGU, "watts")
+		field(HOPR,"4000")
+		field(LOPR,"0")
+	}
+	
+record(ai, "$(P)getpowerSPlevel_read")
+	{
+		field(DESC, "present set point level")
+		field(DTYP, "stream")
+		field(INP,"@AJARF.proto getpowerSPlevel_read $(PORT)")
+		field(EGU,"watts")
+		field(HOPR, "4000")
+		field(SCAN, "1 second")
+		field(FLNK, "$(P)getpowerSPlevel")
+	}
+	
+record(calc, "$(P)getpowerSPlevel")
+	{
+	field(INPA,"$(P)getpowerSPlevel_read.VAL")
+	field(CALC, "A/10")
+	field(EGU,"watts")
+	}
+	
+
+record(ao, "$(P)setaioscale")
+	{
+		field(DESC, "input/output scaling")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto setaioscale $(PORT)")
+		field(EGU, "mV")
+		field(HOPR,"10000")
+		field(LOPR,"1000")
+		field(PREC,"2")
+	}
+ 	
+record(mbbo, "$(P)setoperatingmode")
+	{
+		field(DESC, "operation mode")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto setoperatingmode $(PORT)")
+		field(ZRVL, "1")
+		field(ONVL, "4")
+		field(ZRST, "NORMAL")
+		field(ONST, "RAMP")
+	}
+
+record(mbbo, "$(P)setRFsource")
+	{
+		field(DESC, "RF source")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto setRFsource $(PORT)")
+		field(ZRVL, "1")
+		field(ONVL, "2")
+		field(ZRST, "INTERNAL SOURCE")
+		field(ONST, "EXTERNAL SOURCE")
+	}
+
+record(mbbo, "$(P)setuserlimit")
+	{
+		field(DESC, "RF source")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto setuserlimit $(PORT)")
+		field(ZRVL, "1")
+		field(ONVL, "2")
+		field(ZRST, "FORWARD POWER LIMIT")
+		field(ONST, "REVERSE POWER LIMIT")
+	}
+	
+record(ao, "$(P)setuserlimitlevel")
+	{
+		field(DESC, "RF source")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto setuserlimit $(PORT)")
+		field(HOPR, "4000")
+		field(LOPR, "0")
+		field(EGU, "watts")
+	}
+
+record(ao, "$(P)setramprate")
+	{
+		field(DESC, "Ramp rate")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto setramprate $(PORT)")
+		field(HOPR, "99")
+		field(LOPR, "1")
+		field(EGU, "watts/second")
+	}
+
+record(mbbo, "$(P)settunermode")
+	{
+		field(DESC, "RF source")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto settunermode $(PORT)")
+		field(ZRVL, "1")
+		field(ONVL, "2")
+		field(ZRST, "AUTO")
+		field(ONST, "MANUAL")
+	} 
+	
+record(ao, "$(P)setrampstartpower")
+	{
+		field(DESC, "start-power level")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto setrampstartpower $(PORT)")
+		field(HOPR, "4000")
+		field(LOPR, "1")
+		field(EGU, "watts")
+	}
+ 	
+record(mbbo, "$(P)settunercappositions")
+	{
+		field(DESC, "RF source")
+		field(DTYP, "stream")
+		field(OUT, "@AJARF.proto settunercappositions $(PORT)")
+		field(ZRVL, "1")
+		field(ONVL, "2")
+		field(ZRST, "LC POSIT")
+		field(ONST, "TC POSIT")
+	}
+
+record(ao, "$(P)settcpPARM2")
+	{
+		field(DESC, "RF source")
+		field(DTYP, "stream")
+		field(OUT,"@AJARF.proto settunercappositions $(PORT)")
+		field(HOPR, "100")
+		field(LOPR, "0")
+	}
+
+
+record(ai, "$(P)getFRQH")
+	{
+		field(DESC, "HI WORD")
+		field(DTYP, "stream")
+		field(INP,"@AJARF.proto getfrequency($(P)getFRQL) $(PORT)")
+		field(SCAN, "1 second")
+	}
+	
+record(ai, "$(P)getFRQL")
+	{
+		field(DESC, "LO WORD")
+	}
+ 
+ 
+record(ai, "$(P)getforwardpower_read")
+	{
+		field(DTYP, "stream")
+		field(INP,"@AJARF.proto getpowerreading_read($(P)getreversepower_read,$(P)getloadpower_read) $(PORT)")
+		field(EGU,"watts")
+		field(SCAN, "1 second")
+		field(FLNK, "$(P)getforwardpower")
+	}
+record(calc, "$(P)getforwardpower")
+	{
+	field(DESC, "FORWARD POWER")
+	field(INPA,"$(P)getforwardpower_read.VAL")
+	field(CALC, "A/10")
+	field(EGU,"watts")
+	}
+record(ai, "$(P)getreversepower_read")
+	{
+		field(EGU,"watts")
+		field(FLNK, "$(P)getreversepower")
+	}
+record(calc, "$(P)getreversepower")
+	{
+	field(DESC, "REVERSE POWER")
+	field(INPA,"$(P)getreversepower_read.VAL")
+	field(CALC, "A/10")
+	field(EGU,"watts")
+	}
+	
+record(ai, "$(P)getloadpower_read")
+	{
+		field(EGU,"watts")
+		field(FLNK, "$(P)getloadpower")
+	}
+	
+record(calc, "$(P)getloadpower")
+	{
+	field(DESC, "LOAD POWER")
+	field(INPA,"$(P)getloadpower_read.VAL")
+	field(CALC, "A/10")
+	field(EGU,"watts")
+	}
+ 
+record(ai, "$(P)getrampstart")
+	{
+		field(DESC, "ramp starting power")
+		field(DTYP, "stream")
+		field(INP,"@AJARF.proto getrampparameters($(P)getramprate) $(PORT)")
+		field(EGU,"watts")
+		field(SCAN, "1 second")
+	}
+	
+record(ai, "$(P)getramprate")
+	{
+		field(DESC, "ramp rate")
+		field(EGU,"watts/second")
+	}
+ 	
+record(mbbiDirect, "$(P)getgenStatus")
+	{
+		field(DESC, "STATUS")
+		field(DTYP, "stream")
+		field(INP,"@AJARF.proto getgenstatus($(P)getgenTemperature_read, $(P)getgenOpmode, $(P)getgenTuner) $(PORT)")
+		field(B0, "1")
+		field(B1, "0")
+		field(B2, "0")
+		field(B3, "0")
+		field(B4, "1")
+		field(B5, "0")
+		field(B6, "0")
+		field(B7, "0")
+		field(B8, "1")
+		field(B9, "1")
+		field(BA, "1")
+		field(BB, "1")
+		field(BC, "0")
+		field(BD, "0")
+		field(BE, "1")
+		field(BF, "0")
+		field(SCAN, "1 second")
+		field(FLNK, "$(P)RFpower")
+	}
+
+record(ai, "$(P)getgenTemperature_read")
+	{
+		field(EGU,"Celsius")
+		field(PREC,"1")
+		field(FLNK, "$(P)getgenTemperature")
+	}
+	
+record(calc, "$(P)getgenTemperature")
+	{
+		field(DESC, "TEMP")
+		field(INPA,"$(P)getgenTemperature_read.VAL")
+		field(CALC, "A/10")
+		field(PREC,"1")
+		field(EGU,"Celsius")
+	}
+	
+	
+record(mbbi, "$(P)getgenTuner")
+	{
+		field(DESC, "RF source")
+		field(ZRVL, "1")
+		field(ONVL, "2")
+		field(TWVL, "3")
+		field(THVL, "4")
+		field(ZRST, "NONE")
+		field(ONST, "AFT GENERATOR")
+		field(TWST, "ANALOG TUNER")
+		field(THST, "DIGITAL TUNER")
+	}
+
+record(mbbi, "$(P)getgenOpmode")
+	{
+		field(DESC, "opmode")
+		field(ZRVL, "0")
+		field(ZRST, "INVALID0")
+		field(ONVL, "1")
+		field(ONST, "NORMAL")
+		field(TWVL, "2")
+		field(TWST, "INVALID2")
+		field(THVL, "3")
+		field(THST, "INVALID3")
+		field(FRVL, "4")
+		field(FRST, "RAMP")
+	}	
+	
+
+	
+record(bi, "$(P)RFpower")
+	{
+		field(INP, "$(P)getgenStatus.B0 CP")                 
+		field(ZNAM, "CLOSE")
+                field(ONAM, "OPEN")
+                field(FLNK, "$(P)RFsource")
+	}
+
+record(bi, "$(P)RFsource") 
+	{
+    		field(INP, "$(P)getgenStatus.B4 CP")
+    		field(ZNAM, "Inactive")
+    		field(ONAM, "Active")
+    		field(FLNK, "$(P)gentemperature")
+	}
+	
+record(bi, "$(P)gentemperature")
+	{
+		field(INP, "$(P)getgenStatus.BA CP")                 
+		field(ZNAM, "Cool")
+                field(ONAM, "OVER temperature")
+                field(FLNK, "$(P)interlock")
+	}
+	
+	
+record(bi, "$(P)interlock")
+	{
+		field(INP, "$(P)getgenStatus.BB CP")                 
+		field(ZNAM, "CLOSE")
+                field(ONAM, "OPEN")
+                field(FLNK, "$(P)analoginterface")
+	}
+
+
+
+record(bi, "$(P)analoginterface")
+	{
+		field(INP, "$(P)getgenStatus.BE CP")                 
+		field(ZNAM, "Disable")
+                field(ONAM, "Enabled")
+	}
+	
+		
+
+record(mbbiDirect, "$(P)gettunerStatus")
+	{
+		field(DESC, "STATUS")
+		field(DTYP, "stream")
+		field(INP,"@AJARF.proto gettunerstatus($(P)gettunerLCPOS_read, $(P)gettunerTCPOS_read, $(P)gettunerVDC) $(PORT)")
+		field(B0, "1")
+		field(B1, "1")
+		field(B2, "0")
+		field(B3, "0")
+		field(B4, "1")
+		field(B5, "1")
+		field(B6, "1")
+		field(B7, "1")
+		field(B8, "0")
+		field(B9, "0")
+		field(BA, "0")
+		field(BB, "0")
+		field(BC, "0")
+		field(BD, "0")
+		field(BE, "1")
+		field(BF, "0")
+		field(SCAN, "1 second")
+	}
+
+
+record(longin, "$(P)gettunerLCPOS_read")
+	{
+		field(DESC, "LOAD cap position")
+		field(HOPR, "1000")
+		field(LOPR, "0")
+		field(FLNK,"$(P)gettunerLCPOS")
+	}
+
+record(calc, "$(P)gettunerLCPOS")
+	{
+	field(DESC, "LOAD POWER")
+	field(INPA,"$(P)gettunerLCPOS_read.VAL")
+	field(CALC, "A/10")
+	}
+
+record(longin, "$(P)gettunerTCPOS_read")
+	{
+		field(DESC, "TUNE cap position")
+		field(HOPR, "1000")
+		field(LOPR, "0")
+		field(FLNK,"$(P)gettunerTCPOS")
+	}
+
+record(calc, "$(P)gettunerTCPOS")
+	{
+	field(DESC, "LOAD POWER")
+	field(INPA,"$(P)gettunerTCPOS_read.VAL")
+	field(CALC, "A/10")
+	}
+	
+record(ai, "$(P)gettunerVDC")
+	{
+		field(DESC, "currently selected preset location")
+		field(EGU,"volts")
+	}
+	

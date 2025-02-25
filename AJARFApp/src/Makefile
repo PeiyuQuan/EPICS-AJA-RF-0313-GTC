@@ -55,7 +55,6 @@ AJARF_DBD += drvAsynIPPort.dbd
 AJARF_DBD += calc.dbd
 AJARF_DBD += stream-scalcout.dbd
 AJARF_DBD += stream.dbd
-AJARF_DBD += as.dbd
 AJARF_DBD += asSupport.dbd
 # AJARF_registerRecordDeviceDriver.cpp derives from AJARF.dbd
 AJARF_SRCS += AJARF_registerRecordDeviceDriver.cpp

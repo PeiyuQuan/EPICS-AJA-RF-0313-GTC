@@ -24,8 +24,6 @@ asynSetOption("serial8",0,"bits","8")
 asynSetOption("serial8",0,"stop","1")
 asynSetOption("serial8",0,"parity","none")
 asynSetOption("serial8",0,"crtscts","N")
-#asynSetTraceIOMask("serial8",0, ESCAPE|HEX)
-#asynSetTraceMask("serial8", 0, ERROR|DRIVER|FLOW)
 
 #- Run this to trace the stages of iocInit
 #traceIocInit

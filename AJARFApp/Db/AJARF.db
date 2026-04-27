@@ -62,9 +62,9 @@ record(ai, "$(P)getpowerSPlevel_read")
 	
 record(calc, "$(P)getpowerSPlevel")
 	{
-	field(INPA,"$(P)getpowerSPlevel_read.VAL")
-	field(CALC, "A/10")
-	field(EGU,"watts")
+		field(INPA,"$(P)getpowerSPlevel_read.VAL")
+		field(CALC, "A/10")
+		field(EGU,"watts")
 	}
 	
 
@@ -191,17 +191,17 @@ record(ai, "$(P)getFRQL")
 record(ai, "$(P)getforwardpower_read")
 	{
 		field(DTYP, "stream")
-		field(INP,"@AJARF.proto getpowerreading_read($(P)getreversepower_read,$(P)getloadpower_read) $(PORT)")
+		field(INP,"@AJARF.proto getpowerreading_read(\"$(P)getreversepower_read\",\"$(P)getloadpower_read\") $(PORT)")
 		field(EGU,"watts")
 		field(SCAN, "1 second")
 		field(FLNK, "$(P)getforwardpower")
 	}
 record(calc, "$(P)getforwardpower")
 	{
-	field(DESC, "FORWARD POWER")
-	field(INPA,"$(P)getforwardpower_read.VAL")
-	field(CALC, "A/10")
-	field(EGU,"watts")
+		field(DESC, "FORWARD POWER")
+		field(INPA,"$(P)getforwardpower_read.VAL")
+		field(CALC, "A/10")
+		field(EGU,"watts")
 	}
 record(ai, "$(P)getreversepower_read")
 	{
@@ -210,10 +210,10 @@ record(ai, "$(P)getreversepower_read")
 	}
 record(calc, "$(P)getreversepower")
 	{
-	field(DESC, "REVERSE POWER")
-	field(INPA,"$(P)getreversepower_read.VAL")
-	field(CALC, "A/10")
-	field(EGU,"watts")
+		field(DESC, "REVERSE POWER")
+		field(INPA,"$(P)getreversepower_read.VAL")
+		field(CALC, "A/10")
+		field(EGU,"watts")
 	}
 	
 record(ai, "$(P)getloadpower_read")
@@ -224,10 +224,10 @@ record(ai, "$(P)getloadpower_read")
 	
 record(calc, "$(P)getloadpower")
 	{
-	field(DESC, "LOAD POWER")
-	field(INPA,"$(P)getloadpower_read.VAL")
-	field(CALC, "A/10")
-	field(EGU,"watts")
+		field(DESC, "LOAD POWER")
+		field(INPA,"$(P)getloadpower_read.VAL")
+		field(CALC, "A/10")
+		field(EGU,"watts")
 	}
  
 record(ai, "$(P)getrampstart")
@@ -249,7 +249,7 @@ record(mbbiDirect, "$(P)getgenStatus")
 	{
 		field(DESC, "STATUS")
 		field(DTYP, "stream")
-		field(INP,"@AJARF.proto getgenstatus($(P)getgenTemperature_read, $(P)getgenOpmode, $(P)getgenTuner) $(PORT)")
+		field(INP,"@AJARF.proto getgenstatus(\"$(P)getgenTemperature_read\",\"$(P)getgenOpmode\",\"$(P)getgenTuner\") $(PORT)")
 		field(B0, "1")
 		field(B1, "0")
 		field(B2, "0")
@@ -321,24 +321,24 @@ record(bi, "$(P)RFpower")
 	{
 		field(INP, "$(P)getgenStatus.B0 CP")                 
 		field(ZNAM, "CLOSE")
-                field(ONAM, "OPEN")
-                field(FLNK, "$(P)RFsource")
+        field(ONAM, "OPEN")
+        field(FLNK, "$(P)RFsource")
 	}
 
 record(bi, "$(P)RFsource") 
 	{
-    		field(INP, "$(P)getgenStatus.B4 CP")
-    		field(ZNAM, "Inactive")
-    		field(ONAM, "Active")
-    		field(FLNK, "$(P)gentemperature")
+		field(INP, "$(P)getgenStatus.B4 CP")
+    	field(ZNAM, "Inactive")
+		field(ONAM, "Active")
+		field(FLNK, "$(P)gentemperature")
 	}
 	
 record(bi, "$(P)gentemperature")
 	{
 		field(INP, "$(P)getgenStatus.BA CP")                 
 		field(ZNAM, "Cool")
-                field(ONAM, "OVER temperature")
-                field(FLNK, "$(P)interlock")
+		field(ONAM, "OVER temperature")
+        field(FLNK, "$(P)interlock")
 	}
 	
 	
@@ -346,8 +346,8 @@ record(bi, "$(P)interlock")
 	{
 		field(INP, "$(P)getgenStatus.BB CP")                 
 		field(ZNAM, "CLOSE")
-                field(ONAM, "OPEN")
-                field(FLNK, "$(P)analoginterface")
+        field(ONAM, "OPEN")
+        field(FLNK, "$(P)analoginterface")
 	}
 
 
@@ -356,7 +356,7 @@ record(bi, "$(P)analoginterface")
 	{
 		field(INP, "$(P)getgenStatus.BE CP")                 
 		field(ZNAM, "Disable")
-                field(ONAM, "Enabled")
+        field(ONAM, "Enabled")
 	}
 	
 		
@@ -365,7 +365,7 @@ record(mbbiDirect, "$(P)gettunerStatus")
 	{
 		field(DESC, "STATUS")
 		field(DTYP, "stream")
-		field(INP,"@AJARF.proto gettunerstatus($(P)gettunerLCPOS_read, $(P)gettunerTCPOS_read, $(P)gettunerVDC) $(PORT)")
+		field(INP,"@AJARF.proto gettunerstatus(\"$(P)gettunerLCPOS_read\",\"$(P)gettunerTCPOS_read\",\"$(P)gettunerVDC\") $(PORT)")
 		field(B0, "1")
 		field(B1, "1")
 		field(B2, "0")
